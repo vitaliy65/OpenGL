@@ -11,7 +11,7 @@ namespace Lab1
 
         public FigureCreator() { }
 
-        public void CreateDiamond(object sender, EventArgs e)
+        public void CreateDiamond()
         {
             DrawDiamondLines(5, GL_LINE_STRIP, 0, 0, 0);
 
