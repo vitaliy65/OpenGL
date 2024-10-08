@@ -13,7 +13,7 @@ namespace Lab1
         {
             FigureCreator figureCreator = new FigureCreator();
             figureCreator.SetViewPort(-5, -2, 6, 4);
-            figureCreator.CreateDiamond(sender, e);
+            figureCreator.CreateDiamond();
         }
     }
 }
