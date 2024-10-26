@@ -21,11 +21,8 @@ namespace Task_03
 
         private void RenderControl_Render(object sender, EventArgs e)
         {
-            if (FigureController._xMin != 0 && FigureController._xMax != 0 && FigureController._numPoints != 0)
-            {
-                figureController.SetView(_ParentWidth, _ParentHeight);
-                figureController.DrawFunction();
-            }
+            figureController.SetView(_ParentWidth, _ParentHeight);
+            figureController.DrawFunction();
         }
     }
 }
