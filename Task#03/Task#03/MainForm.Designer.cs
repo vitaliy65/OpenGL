@@ -160,7 +160,8 @@ namespace Task_03
             numericUpDown3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             numericUpDown3.Increment = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown3.Location = new System.Drawing.Point(74, 410);
-            numericUpDown3.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
+            numericUpDown3.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
+
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new System.Drawing.Size(111, 29);
             numericUpDown3.TabIndex = 19;

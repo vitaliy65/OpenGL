@@ -9,8 +9,8 @@ namespace Task_03
     abstract class FigureControllerBase : IFigureController
     {
         protected FigureControllerBase(){
-            _xCoordinate = new double[0];
-            _yCoordinate = new double[0];
+            x = new double[0];
+            y = new double[0];
         }
 
         protected delegate double FunctionOperation(double x);
@@ -21,8 +21,8 @@ namespace Task_03
         public static double _xMax = 0;
         public static double _yMax = 0;
 
-        protected static double[] _xCoordinate;
-        protected static double[] _yCoordinate;
+        protected static double[] x;
+        protected static double[] y;
         public static int _numPoints = 0;
 
         // Abstract methods
@@ -45,23 +45,20 @@ namespace Task_03
             glLineWidth(1);
             glBegin(GL_LINE_STRIP);
             glColor3b(127, 0, 0);
-            for (int i = 0; i < _xCoordinate.Length; i++)
+            for (int i = 0; i < x.Length; i++)
             {
-                glVertex2d(_xCoordinate[i], _yCoordinate[i]);
+                glVertex2d(x[i], y[i]);
             }
             glEnd();
             DrawPoints();
 
-            glColor3b(30, 127, 0);
-            glLineStipple(2, 0x00FF);
+            glColor3b(127, 127, 0);
+            glLineStipple(1, 0x00FF);
             glEnable(GL_LINE_STIPPLE);
             glBegin(GL_LINES);
-            for (int i = 0; i < _xCoordinate.Length - 1; i++)
+            for (int i = 0; i < x.Length; i++)
             {
-                if (!Double.IsNaN(_yCoordinate[i]) && Double.IsNaN(_yCoordinate[i + 1]))
-                {
-                    DrawRip(i);
-                }
+                DrawRip(x[i]);
             }
             glEnd();
             glDisable(GL_LINE_STIPPLE);
@@ -74,12 +71,12 @@ namespace Task_03
                 glEnable(GL_POINT_SMOOTH);
                 glBegin(GL_POINTS);
                 glColor3b(0, 0, 127);
-                for (int i = 0; i < _xCoordinate.Length - 1; i++)
+                for (int i = 0; i < x.Length - 1; i++)
                 {
-                    if ((_yCoordinate[i] > 0 && _yCoordinate[i + 1] < 0) || (_yCoordinate[i] < 0 && _yCoordinate[i + 1] > 0))
+                    if ((y[i] > 0 && y[i + 1] < 0) || (y[i] < 0 && y[i + 1] > 0))
                     {
-                        double x0 = _xCoordinate[i];
-                        double x1 = _xCoordinate[i + 1];
+                        double x0 = x[i];
+                        double x1 = x[i + 1];
                         double xIntersect = FindRoot(x0, x1);
                         glColor3b(0, 0, 127);
                         glVertex2d(xIntersect, 0); // Draw intersection point
@@ -89,12 +86,15 @@ namespace Task_03
                 glDisable(GL_POINT_SMOOTH);
             }
         }
-        public void DrawRip(int i)
+        public void DrawRip(double x)
         {
             if (selectedF.Method.ToString().Contains("f2"))
             {
-                glVertex2d(_xCoordinate[i], _yMax);
-                glVertex2d(_xCoordinate[i], _yMin);
+                if (Math.Sin(x) + 1 < 0)
+                {
+                    glVertex2d(x, _yMax);
+                    glVertex2d(x, _yMin);
+                }
             }
         }
         protected double FindRoot(double x0, double x1)
@@ -114,8 +114,8 @@ namespace Task_03
                 SetGrid();
                 if(_yMin == 0 && _yMax == 0)
                 {
-                    SetYmin(_yCoordinate.Min());
-                    SetYmax(_yCoordinate.Max());
+                    SetYmin(y.Min());
+                    SetYmax(y.Max());
                 }
 
 
@@ -131,6 +131,8 @@ namespace Task_03
                 glOrtho(x1, x2, y1, y2, -1.0, 1.0);
 
                 drawGrid(x1, x2, y1, y2);
+                _yMin = 0;
+                _yMax = 0;
             }
             else
             {
@@ -144,7 +146,7 @@ namespace Task_03
             double step = (end - start) / (num - 1);
             for (int i = 0; i < num; i++)
             {
-                result[i] = start + i * step;
+                result[i] = Math.Round(start + i * step, 4);
             }
             return result;
         }

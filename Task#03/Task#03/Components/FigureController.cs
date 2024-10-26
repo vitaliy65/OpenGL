@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using static Task_03.OpenGL;
 
 namespace Task_03
@@ -13,18 +12,18 @@ namespace Task_03
 
         // Implemented abstract methods
         protected override double f1(double x) => Math.Cos(3 * x + 1) / Math.Pow(Math.Cos(5 * x) + 1.21, 2);
-        protected override double f2(double x) => Math.Log(Math.Sin(x)) + Math.Cos(4 * x + 1);
+        protected override double f2(double x) => Math.Log(Math.Sin(x) + 1) + Math.Cos(4 * x + 1);
 
         protected override void SetGrid()
         {
             if (selectedF != null)
             {
-                _xCoordinate = Linspace(_xMin, _xMax, _numPoints);
-                _yCoordinate = new double[_xCoordinate.Length];
+                x = Linspace(_xMin, _xMax, _numPoints);
+                y = new double[x.Length];
 
-                for (int i = 0; i < _xCoordinate.Length; i++)
+                for (int i = 0; i < x.Length; i++)
                 {
-                    _yCoordinate[i] = selectedF(_xCoordinate[i]);
+                    y[i] = selectedF(x[i]);
                 }
             }
         }
