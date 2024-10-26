@@ -35,7 +35,7 @@ namespace Task_04.Components
         {
             if (LMBpoint == null || RMBpoint == null) return;
 
-            float threshold = 0.02f; // Допустима близькість для виявлення перетину
+            float threshold = 0.01f; // Допустима близькість для виявлення перетину
 
             foreach (var circlePoint in Circle.points)
                 if (IsPointNearLine(circlePoint, LMBpoint.Value, RMBpoint.Value, threshold))

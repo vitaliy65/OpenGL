@@ -17,7 +17,7 @@
         public Point center { get; set; }
         public float width {  get; set; }
         public float height { get; set; }
-        public const int numSegments = 1000;
+        public const int numSegments = 2000;
 
         public AFigure() { center = new Point(); }
 
