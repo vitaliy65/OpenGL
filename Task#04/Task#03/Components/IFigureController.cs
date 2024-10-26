@@ -1,4 +1,4 @@
-﻿namespace Task_03
+﻿namespace Task_04
 {
     internal interface IFigureController
     {

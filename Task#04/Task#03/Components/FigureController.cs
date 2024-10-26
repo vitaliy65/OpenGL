@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static Task_03.OpenGL;
+using static Task_04.OpenGL;
 
-namespace Task_03
+namespace Task_04
 {
     internal class FigureController : IFigureController
     {
