@@ -32,6 +32,11 @@ namespace Task_03
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             panel1 = new System.Windows.Forms.Panel();
             panel3 = new System.Windows.Forms.Panel();
+            checkBox1 = new System.Windows.Forms.CheckBox();
+            numericUpDown4 = new System.Windows.Forms.NumericUpDown();
+            numericUpDown5 = new System.Windows.Forms.NumericUpDown();
+            label4 = new System.Windows.Forms.Label();
+            label5 = new System.Windows.Forms.Label();
             button1 = new System.Windows.Forms.Button();
             numericUpDown3 = new System.Windows.Forms.NumericUpDown();
             numericUpDown2 = new System.Windows.Forms.NumericUpDown();
@@ -46,6 +51,8 @@ namespace Task_03
             renderControl1 = new RenderControl();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -65,6 +72,11 @@ namespace Task_03
             // panel3
             // 
             panel3.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            panel3.Controls.Add(checkBox1);
+            panel3.Controls.Add(numericUpDown4);
+            panel3.Controls.Add(numericUpDown5);
+            panel3.Controls.Add(label4);
+            panel3.Controls.Add(label5);
             panel3.Controls.Add(button1);
             panel3.Controls.Add(numericUpDown3);
             panel3.Controls.Add(numericUpDown2);
@@ -80,9 +92,62 @@ namespace Task_03
             panel3.Size = new System.Drawing.Size(188, 503);
             panel3.TabIndex = 14;
             // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new System.Drawing.Point(3, 154);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new System.Drawing.Size(125, 19);
+            checkBox1.TabIndex = 25;
+            checkBox1.Text = "second function f2";
+            checkBox1.UseVisualStyleBackColor = true;
+            checkBox1.CheckedChanged += checkBox1_CheckedChanged;
+            // 
+            // numericUpDown4
+            // 
+            numericUpDown4.DecimalPlaces = 1;
+            numericUpDown4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            numericUpDown4.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown4.Location = new System.Drawing.Point(74, 110);
+            numericUpDown4.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
+            numericUpDown4.Name = "numericUpDown4";
+            numericUpDown4.Size = new System.Drawing.Size(111, 29);
+            numericUpDown4.TabIndex = 24;
+            // 
+            // numericUpDown5
+            // 
+            numericUpDown5.DecimalPlaces = 1;
+            numericUpDown5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            numericUpDown5.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown5.Location = new System.Drawing.Point(74, 75);
+            numericUpDown5.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
+            numericUpDown5.Name = "numericUpDown5";
+            numericUpDown5.Size = new System.Drawing.Size(111, 29);
+            numericUpDown5.TabIndex = 23;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label4.Location = new System.Drawing.Point(3, 113);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(45, 20);
+            label4.TabIndex = 22;
+            label4.Text = "yMax";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            label5.Location = new System.Drawing.Point(3, 78);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(41, 20);
+            label5.TabIndex = 21;
+            label5.Text = "yMin";
+            // 
             // button1
             // 
-            button1.Location = new System.Drawing.Point(3, 158);
+            button1.Location = new System.Drawing.Point(3, 466);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(182, 23);
             button1.TabIndex = 20;
@@ -94,12 +159,11 @@ namespace Task_03
             // 
             numericUpDown3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             numericUpDown3.Increment = new decimal(new int[] { 10, 0, 0, 0 });
-            numericUpDown3.Location = new System.Drawing.Point(74, 102);
-            numericUpDown3.Maximum = new decimal(new int[] { 2000, 0, 0, 0 });
+            numericUpDown3.Location = new System.Drawing.Point(74, 410);
+            numericUpDown3.Maximum = new decimal(new int[] { 200000, 0, 0, 0 });
             numericUpDown3.Name = "numericUpDown3";
             numericUpDown3.Size = new System.Drawing.Size(111, 29);
             numericUpDown3.TabIndex = 19;
-            numericUpDown3.ValueChanged += numericUpDown3_ValueChanged;
             // 
             // numericUpDown2
             // 
@@ -111,7 +175,6 @@ namespace Task_03
             numericUpDown2.Name = "numericUpDown2";
             numericUpDown2.Size = new System.Drawing.Size(111, 29);
             numericUpDown2.TabIndex = 18;
-            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // numericUpDown1
             // 
@@ -123,13 +186,12 @@ namespace Task_03
             numericUpDown1.Name = "numericUpDown1";
             numericUpDown1.Size = new System.Drawing.Size(111, 29);
             numericUpDown1.TabIndex = 17;
-            numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            label3.Location = new System.Drawing.Point(3, 105);
+            label3.Location = new System.Drawing.Point(3, 413);
             label3.Name = "label3";
             label3.Size = new System.Drawing.Size(53, 20);
             label3.TabIndex = 16;
@@ -231,6 +293,8 @@ namespace Task_03
             panel1.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown5).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown3).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
@@ -254,6 +318,11 @@ namespace Task_03
         private System.Windows.Forms.RadioButton radioButton2;
         private RenderControl renderControl1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
+        private System.Windows.Forms.NumericUpDown numericUpDown5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
     }
 }
 
