@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Task_04
+namespace Task_03
 {
     [ToolboxItem(false), DefaultEvent("Render")]
     public partial class OpenGL : UserControl

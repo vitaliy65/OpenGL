@@ -44,6 +44,7 @@ namespace Task_04
             Size = new Size(480, 300);
             TextCodePage = 1251;
             Render += RenderControl_Render;
+            MouseClick += RenderControl_MouseClick;
             ResumeLayout(false);
         }
 

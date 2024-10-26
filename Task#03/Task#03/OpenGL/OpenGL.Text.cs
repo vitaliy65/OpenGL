@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Task_04
+namespace Task_03
 {
     partial class OpenGL
     {

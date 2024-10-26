@@ -4,7 +4,7 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace Task_04
+namespace Task_03
 {
     partial class OpenGL
     {
