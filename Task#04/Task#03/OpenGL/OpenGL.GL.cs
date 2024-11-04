@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Design.Serialization;
 using System.Runtime.InteropServices;
 
 namespace Task_04
@@ -1804,6 +1805,8 @@ namespace Task_04
         [DllImport(GL_DLL, EntryPoint = "glVertexPointer")]
         public static extern void glVertexPointer(int size, uint type, int stride, IntPtr pointer);
         [DllImport(GL_DLL, EntryPoint = "glViewport")]
+
         public static extern void glViewport(int x, int y, int width, int height);
+
     }
 }
