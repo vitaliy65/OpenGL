@@ -29,5 +29,16 @@ namespace Task_05
             renderControl1.fillFigure = !renderControl1.fillFigure;
             renderControl1.Invalidate();
         }
+
+        private void checkBox2_CheckedChanged(object sender, System.EventArgs e)
+        {
+            renderControl1.SetPerspectiveMode();
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, System.EventArgs e)
+        {
+            renderControl1.clipPlaneHeight = (float)numericUpDown2.Value;
+            renderControl1.Invalidate();
+        }
     }
 }

@@ -14,6 +14,7 @@ namespace Task_05
         public IntPtr quadric;
 
         public bool fillFigure = false;
+        public float clipPlaneHeight { get; set; } = -1.5f;
 
         uint id0 = 0;
 
@@ -50,11 +51,22 @@ namespace Task_05
 
 
             gluQuadricDrawStyle(quadric, fillFigure ? GLU_FILL : GLU_LINE);
+
+            CreateClipPlanes(clipPlaneHeight);
             sphere.DrawFigure(quadric, fillFigure);
+            glDisable(GL_CLIP_PLANE0);
             cylinder.DrawFigure(quadric, fillFigure);
             disk.DrawFigure(quadric, fillFigure);
         }
 
+
+
+        private void CreateClipPlanes(float y = -1.5f)
+        {
+            double[] clipPlane = { 0.0, 1.0, 0.0, y };
+            glEnable(GL_CLIP_PLANE0);
+            glClipPlane(GL_CLIP_PLANE0, clipPlane);
+        }
         private void CreateGridList()
         {
             id0 = glGenLists(3);
@@ -64,7 +76,6 @@ namespace Task_05
 
             glEndList();
         }
-
         private void initLighting()
         {
             glEnable(GL_LIGHTING);
@@ -92,6 +103,11 @@ namespace Task_05
         }
         public void SetViewScale() =>
             _gridView.SetScale(_mouseViewInteraction.Scale);
+        public void SetPerspectiveMode()
+        {
+            _gridView.usePerspective = !_gridView.usePerspective;
+            Invalidate();
+        }
 
 
 

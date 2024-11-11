@@ -26,11 +26,8 @@ namespace Task_05.Components
 
             glTranslatef(center.X, center.Y, center.Z);
 
-            //gluQuadricDrawStyle(quadric, fillEnable ? GLU_FILL : GLU_LINE); // Устанавливаем стиль отрисовки
             gluDisk(quadric, InnerRadius, OuterRadius, 32, 2);     // Отрисовываем c 32 долготами и широтами
 
-            //gluDeleteQuadric(quadric);  // Освобождаем память
-            //wglSwapBuffers(quadric);
         }
 
         private void SetMaterial()

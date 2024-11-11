@@ -1,11 +1,14 @@
 ﻿using System;
-using System.Runtime.InteropServices;
+using System.Drawing.Imaging;
+using System.Drawing;
 using static Task_05.OpenGL;
 
 namespace Task_05.Components
 {
     internal class Sphere : AFigure
     {
+        uint textureId = 0;
+
         public Sphere()
         {
             center = new Point(2, 1.5f, 2);
@@ -16,26 +19,38 @@ namespace Task_05.Components
         {
             SetMaterial();
             SetTexture();
-            glColor3b(0, 0, 126);
 
+            // Включаем использование текстуры для квадрики
+            gluQuadricTexture(quadric, 1);
+
+            glPushMatrix();
             glTranslatef(center.X, center.Y, center.Z);
-
-            //gluQuadricDrawStyle(quadric, fillEnable ? GLU_FILL : GLU_LINE);
             gluSphere(quadric, radius, 32, 32);
+            glPopMatrix();
 
-            //gluDeleteQuadric(quadric);  // Освобождаем память
-            //wglSwapBuffers(quadric);
+            // Отключаем текстуру после рисования
+            glDisable(GL_TEXTURE_2D);
         }
 
         private void SetTexture()
         {
+            if (textureId == 0)
+            {
+                textureId = LoadTexture("C:/Users/cigri/Downloads/всяка всячина/wizarding-world-portrait.png");
+            }
 
+            glEnable(GL_TEXTURE_2D);  // Включаем 2D текстурирование
+            glBindTexture(GL_TEXTURE_2D, textureId);  // Привязываем текстуру
         }
 
         private void SetMaterial()
         {
-            float shininess = 50.0f;
-            glMaterialf(GL_FRONT, GL_SHININESS, shininess); // Встановлюємо блискучість
+            float[] ambient = new float[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            float[] diffuse = new float[] { 1.0f, 1.0f, 1.0f, 1.0f };
+            glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+            glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+            glMaterialfv(GL_FRONT, GL_SPECULAR, new float[] { 1.0f, 1.0f, 1.0f, 1.0f });
+            glMaterialf(GL_FRONT, GL_SHININESS, 0.0f);  // Без блеска
         }
     }
 }

@@ -11,6 +11,8 @@ namespace Task_05.Components
         public ShowText showText;
         private int _minGridSize = 10; 
         public static int gridSize { get; set; }
+        public Point gridPosition { get; set; } = new Point(5,5,5);
+        public bool usePerspective = false;
 
         public GridView()
         {
@@ -25,6 +27,10 @@ namespace Task_05.Components
         }
         private void CreateAxis()
         {
+            float x0 = gridPosition.X;
+            float y0 = gridPosition.Y;
+            float z0 = gridPosition.Z;
+
             glLineWidth(2);
             glColor3b(127, 127, 127);
 
@@ -32,38 +38,55 @@ namespace Task_05.Components
             glEnable(GL_LINE_STIPPLE);
 
             glBegin(GL_LINES);
-            glVertex3d(0, 0, 0);
-            glVertex3d(gridSize, 0, 0);
-            glVertex3d(0, 0, 0);
-            glVertex3d(0, gridSize, 0);
-            glVertex3d(0, 0, 0);
-            glVertex3d(0, 0, gridSize);
+            glVertex3d(x0,               y0,                z0);
+            glVertex3d(x0 + gridSize,    y0,                z0);
+            glVertex3d(x0,               y0,                z0);
+            glVertex3d(x0,               y0 + gridSize,     z0);
+            glVertex3d(x0,               y0,                z0);
+            glVertex3d(x0,               y0,                z0 + gridSize);
 
-            glVertex3d(0, 0, 0);
-            glVertex3d(-gridSize, 0, 0);
-            glVertex3d(0, 0, 0);
-            glVertex3d(0, -gridSize, 0);
-            glVertex3d(0, 0, 0);
-            glVertex3d(0, 0, -gridSize);
+            glVertex3d(x0,               y0,                z0);
+            glVertex3d(x0 + (-gridSize), y0,                z0);
+            glVertex3d(x0,               y0,                z0);
+            glVertex3d(x0,               y0 + (-gridSize),  z0);
+            glVertex3d(x0,               y0,                z0);
+            glVertex3d(x0,               y0,                z0 + (-gridSize));
 
             glEnd();
             glDisable(GL_LINE_STIPPLE);
+
+
+            // main axis
+            glBegin(GL_LINES);
+            glVertex3d(0, gridSize, 0);
+            glVertex3d(0, -gridSize, 0);
+            glEnd();
         }
         private void CreateFlatGround()
         {
+            float x0 = gridPosition.X;
+            float y0 = gridPosition.Y;
+            float z0 = gridPosition.Z;
+
             glBegin(GL_LINE_LOOP);
-            glVertex3d(gridSize, 0, gridSize);
-            glVertex3d(-gridSize, 0, gridSize);
-            glVertex3d(-gridSize, 0, -gridSize);
-            glVertex3d(gridSize, 0, -gridSize);
+            glVertex3d(x0 +  gridSize, y0, z0 +  gridSize);
+            glVertex3d(x0 + -gridSize, y0, z0 +  gridSize);
+            glVertex3d(x0 + -gridSize, y0, z0 + -gridSize);
+            glVertex3d(x0 +  gridSize, y0, z0 + -gridSize);
             glEnd();
         }
         private void CreateGridText()
         {
+            float x0 = gridPosition.X;
+            float y0 = gridPosition.Y;
+            float z0 = gridPosition.Z;
+
             glColor3b(126, 0, 0);
-            showText.Invoke("X", gridSize, 0.2f, 0);
-            showText.Invoke("Y", 0, gridSize + 0.2f, 0);
-            showText.Invoke("Z", 0, 0.2f, gridSize);
+            showText.Invoke("X", x0 + gridSize, y0 + 0.2f,            z0);
+            showText.Invoke("Y", x0,            y0 + gridSize + 0.2f, z0);
+            showText.Invoke("Z", x0,            y0 + 0.2f,            z0 + gridSize);
+
+            showText.Invoke("Main Axis", 0, gridSize + 0.4f, 0);
         }
 
         public void SetView(int width, int height, RenderRotation rotation, RenderScale scale)
@@ -82,9 +105,15 @@ namespace Task_05.Components
             else
                 glViewport(0, (height - width) / 2, width, width);
 
-            glOrtho(x1 - 1, x2 + 1, y1 - 1, y2 + 1, -gridSize * 3, gridSize * 3);
-            //glFrustum(x1 - 1, x2 + 1, y1 - 1, y2 + 1, -gridSize * 3, gridSize * 3);
-            //gluPerspective(50 , 1, gridSize * 3, gridSize * 3);
+            if(!usePerspective)
+                glOrtho(x1 - 1, x2 + 1, y1 - 1, y2 + 1, -gridSize * 3, gridSize * 3);
+            else
+            {
+                gluPerspective(50, (double)width/height, 1, 100);
+                gluLookAt(3.0, 3.0, 3.0,   // Camera position
+                          0.0, 0.0, 0.0,   // Look at point (origin)
+                          0.0, 1.0, 0.0);  // Up direction (y-axis)
+            }
 
             rotation.Invoke();
             scale.Invoke();

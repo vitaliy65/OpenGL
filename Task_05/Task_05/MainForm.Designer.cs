@@ -34,13 +34,17 @@ namespace Task_05
             panel1 = new System.Windows.Forms.Panel();
             panel2 = new System.Windows.Forms.Panel();
             groupBox1 = new System.Windows.Forms.GroupBox();
+            checkBox2 = new System.Windows.Forms.CheckBox();
             checkBox1 = new System.Windows.Forms.CheckBox();
             label1 = new System.Windows.Forms.Label();
             numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            label2 = new System.Windows.Forms.Label();
+            numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
             SuspendLayout();
             // 
             // renderControl1
@@ -81,6 +85,9 @@ namespace Task_05
             // groupBox1
             // 
             groupBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            groupBox1.Controls.Add(numericUpDown2);
+            groupBox1.Controls.Add(label2);
+            groupBox1.Controls.Add(checkBox2);
             groupBox1.Controls.Add(checkBox1);
             groupBox1.Controls.Add(label1);
             groupBox1.Controls.Add(numericUpDown1);
@@ -95,17 +102,31 @@ namespace Task_05
             groupBox1.TabStop = false;
             groupBox1.Text = "Properties";
             // 
+            // checkBox2
+            // 
+            checkBox2.AutoSize = true;
+            checkBox2.BackColor = System.Drawing.Color.FromArgb(20, 20, 20);
+            checkBox2.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            checkBox2.Location = new System.Drawing.Point(6, 115);
+            checkBox2.Name = "checkBox2";
+            checkBox2.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            checkBox2.Size = new System.Drawing.Size(181, 21);
+            checkBox2.TabIndex = 3;
+            checkBox2.Text = "Enable perspective mode";
+            checkBox2.UseVisualStyleBackColor = false;
+            checkBox2.CheckedChanged += checkBox2_CheckedChanged;
+            // 
             // checkBox1
             // 
             checkBox1.AutoSize = true;
             checkBox1.BackColor = System.Drawing.Color.FromArgb(20, 20, 20);
             checkBox1.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            checkBox1.Location = new System.Drawing.Point(6, 61);
+            checkBox1.Location = new System.Drawing.Point(6, 88);
             checkBox1.Name = "checkBox1";
             checkBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            checkBox1.Size = new System.Drawing.Size(128, 21);
+            checkBox1.Size = new System.Drawing.Size(180, 21);
             checkBox1.TabIndex = 2;
-            checkBox1.Text = "Enable fill mode";
+            checkBox1.Text = "Enable fill mode             ";
             checkBox1.UseVisualStyleBackColor = false;
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
@@ -128,10 +149,36 @@ namespace Task_05
             numericUpDown1.Location = new System.Drawing.Point(73, 34);
             numericUpDown1.Minimum = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new System.Drawing.Size(234, 21);
+            numericUpDown1.Size = new System.Drawing.Size(261, 21);
             numericUpDown1.TabIndex = 0;
             numericUpDown1.Value = new decimal(new int[] { 10, 0, 0, 0 });
             numericUpDown1.ValueChanged += numericUpDown1_ValueChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            label2.Location = new System.Drawing.Point(6, 58);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(114, 17);
+            label2.TabIndex = 5;
+            label2.Text = "Clip plane height";
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.BackColor = System.Drawing.Color.FromArgb(20, 20, 20);
+            numericUpDown2.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            numericUpDown2.DecimalPlaces = 1;
+            numericUpDown2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            numericUpDown2.ForeColor = System.Drawing.Color.White;
+            numericUpDown2.Increment = new decimal(new int[] { 1, 0, 0, 65536 });
+            numericUpDown2.Location = new System.Drawing.Point(126, 58);
+            numericUpDown2.Minimum = new decimal(new int[] { 100, 0, 0, int.MinValue });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new System.Drawing.Size(208, 21);
+            numericUpDown2.TabIndex = 6;
+            numericUpDown2.Value = new decimal(new int[] { 15, 0, 0, -2147418112 });
+            numericUpDown2.ValueChanged += numericUpDown2_ValueChanged;
             // 
             // MainForm
             // 
@@ -150,6 +197,7 @@ namespace Task_05
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -163,6 +211,9 @@ namespace Task_05
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
     }
 }
 

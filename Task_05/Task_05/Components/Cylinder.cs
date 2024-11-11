@@ -1,13 +1,12 @@
 ﻿using System;
 using static Task_05.OpenGL;
 
-
 namespace Task_05.Components
 {
     internal class Cylinder : AFigure
     {
         private int _height = 1;
-        public  int Height { get => _height; set => _height = value; }
+        public int Height { get => _height; set => _height = value; }
 
         public Cylinder()
         {
@@ -19,28 +18,26 @@ namespace Task_05.Components
         {
             SetMaterial();
             initCulling();
-            glColor3b(0, 0, 126);
 
+            glColor3b(0, 0, 126);
             glEnable(GL_COLOR_MATERIAL);
 
             glTranslatef(center.X, center.Y, center.Z);
             glRotated(90, 1, 0, 0);
 
-            //gluQuadricDrawStyle(quadric, fillEnable ? GLU_FILL : GLU_LINE); // Устанавливаем стиль отрисовки
-            gluCylinder(quadric, radius, radius, _height, 32, 4);     // Отрисовываем c 32 долготами и широтами
-
-            //gluDeleteQuadric(quadric);  // Освобождаем память
-            //wglSwapBuffers(quadric);
+            // Встановлюємо стиль відображення (заповнений чи тільки лінії)
+            gluQuadricDrawStyle(quadric, fillEnable ? GLU_FILL : GLU_LINE);
+            gluCylinder(quadric, radius, radius, _height, 32, 4); // Малюємо циліндр з 32 долготами і широтами
         }
 
         private void SetMaterial()
         {
-            
+            // матеріал
         }
 
-        void initCulling()
+        private void initCulling()
         {
-            glDisable(GL_CULL_FACE);   // Вмикаємо відсікання граней
+            glDisable(GL_CULL_FACE); // Вимикаємо відсікання граней
         }
     }
 }
