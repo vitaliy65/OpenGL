@@ -12,39 +12,6 @@ namespace Task_04
 
         public ViewController() {}
 
-        // поставить точку на где y близиться у 0
-        //public void DrawPoints()
-        //{
-        //    glPointSize(8);
-
-        //    glEnable(GL_POINT_SMOOTH);
-        //    glBegin(GL_POINTS);
-
-        //    glColor3b(0, 0, 127);
-        //    for (int i = 0; i < x.Length - 1; i++)
-        //    {
-        //        if ((y[i] > 0 && y[i + 1] < 0) || (y[i] < 0 && y[i + 1] > 0))
-        //        {
-        //            double x0 = x[i];
-        //            double x1 = x[i + 1];
-        //            // находим x где y будет = 0
-        //            double xIntersect = FindRoot(x0, x1);
-        //            glColor3b(0, 0, 127);
-        //            glVertex2d(xIntersect, 0); // рисуем точку
-        //        }    
-        //    }
-        //    glEnd();
-        //    glDisable(GL_POINT_SMOOTH);
-        //}
-
-        //private double FindRoot(double x0, double x1)
-        //{
-        //    double y0 = f1(x0);
-        //    double y1 = f1(x1);
-        //    double slope = (y1 - y0) / (x1 - x0);
-        //    return x0 - y0 / slope;
-        //}
-
         public void drawGrid(double x1, double x2, double y1, double y2)
         {
             glLineWidth(1);
@@ -97,10 +64,15 @@ namespace Task_04
                 glClear(GL_COLOR_BUFFER_BIT);
                 glLoadIdentity();
 
-                glViewport(0, 0, width, height);
+                if (width > height)
+                    glViewport((width - height) / 2, 0, height, height);
+                else
+                    glViewport(0, (height - width) / 2, width, width);
+
                 glOrtho(x1, x2, y1, y2, -1.0, 1.0);
 
                 drawGrid(x1,x2,y1,y2);
+                
             }
             else
             {
