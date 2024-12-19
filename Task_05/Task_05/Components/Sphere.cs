@@ -36,7 +36,7 @@ namespace Task_05.Components
         {
             if (textureId == 0)
             {
-                textureId = LoadTexture("C:/Users/cigri/Downloads/всяка всячина/wizarding-world-portrait.png");
+                textureId = LoadTexture("C:/Users/cigri/Downloads/Telegram Desktop/photo_2024-11-29_12-07-24.jpg");
             }
 
             glEnable(GL_TEXTURE_2D);  // Включаем 2D текстурирование
